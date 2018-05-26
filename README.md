@@ -17,8 +17,10 @@ Execute following instructions in root directory of the repository:
 
 wget http://libav.org/releases/libav-12.3.tar.xz
 tar xf libav-12.3.tar.xz
-(cd libav-12.2; ./configure)
-(cd libav-12.2; make)
+(cd libav-12.3; ./configure)
+(cd libav-12.3; make)
+
+
 
 
 
