@@ -46,7 +46,8 @@ LOCAL_SDK_VERSION := 24
 LOCAL_SRC_FILES := atom.cpp \
 	file.cpp \
 	mp4.cpp \
-	track.cpp
+	track.cpp \
+	com_meigSmart_RecoveryMp4_MainActivity.cpp \
 
 
 LOCAL_C_INCLUDES :=      \
@@ -57,7 +58,9 @@ LOCAL_C_INCLUDES :=      \
 #LOCAL_STATIC_LIBRARIES   +=   libstlport_static
 #arm64-v8a
 #armeabi-v7a
+#STL_PATH=$(LOCAL_PATH)/../../../../prebuilts/ndk/current/sources/cxx-stl/gnu-libstdc++/4.9/libs/arm64-v8a
 STL_PATH=$(LOCAL_PATH)/../../../../prebuilts/ndk/current/sources/cxx-stl/gnu-libstdc++/4.9/libs/arm64-v8a
+STLPORT_PATH=$(LOCAL_PATH)/../../../../prebuilts/ndk/current/sources/cxx-stl/stlport/libs/arm64-v8a
 
 LOCAL_CPPFLAGS := \
 -DNULL=0 -DSCOKLEN_T=socklen_t -DNO_SSTREAM -DBSD=1 -DNO_SSTREAM -fno-exceptions -DANDROID -DXLOCALE_NOT_USED -fPIC -frtti -g
@@ -75,7 +78,8 @@ LOCAL_SHARED_LIBRARIES :=   \
 
 
 
-LOCAL_LDLIBS :=  -L$(SYSROOT)/usr/lib -llog -lz -lm -lstdc++ -L$(STL_PATH) -lgnustl_static -lsupc++
+#LOCAL_LDLIBS :=  -L$(SYSROOT)/usr/lib -llog -lz -lm -lstdc++ -L$(STL_PATH) -lgnustl_static -lsupc++
+LOCAL_LDLIBS :=  -L$(SYSROOT)/usr/lib -llog -lz -lm -lstdc++ -L$(STL_PATH) -lgnustl_static -lsupc++ -L$(STLPORT_PATH) -lstlport_shared
 
 LOCAL_MULTILIB := 64
 LOCAL_MODULE_TAGS := optional
@@ -83,4 +87,3 @@ LOCAL_ALLOW_UNDEFINED_SYMBOLS := true
 
 include $(BUILD_SHARED_LIBRARY)
 include $(LOCAL_PATH)/master/libav-12.2/Android.mk
-
